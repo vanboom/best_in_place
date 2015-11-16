@@ -15,7 +15,7 @@ module BestInPlace
 
       display_value = best_in_place_build_value_for(real_object, field, opts)
 
-      value = real_object.send(field)
+      value = real_object.read_attribute(field)
 
       if opts[:collection] or type == :checkbox
         collection = opts[:collection]
@@ -95,14 +95,14 @@ module BestInPlace
 
       elsif opts[:display_with].try(:is_a?, Proc)
         BestInPlace::DisplayMethods.add_helper_proc(klass, field, opts[:display_with])
-        opts[:display_with].call(object.send(field))
+        opts[:display_with].call(object.read_attribute(field))
 
       elsif opts[:display_with]
         BestInPlace::DisplayMethods.add_helper_method(klass, field, opts[:display_with], opts[:helper_options])
         if opts[:helper_options]
-          BestInPlace::ViewHelpers.send(opts[:display_with], object.send(field), opts[:helper_options])
+          BestInPlace::ViewHelpers.send(opts[:display_with], object.read_attribute(field), opts[:helper_options])
         else
-          field_value = object.send(field)
+          field_value = object.read_attribute(field)
 
           if field_value.blank?
             ''
@@ -112,7 +112,7 @@ module BestInPlace
         end
 
       else
-        object.send(field).to_s
+        object.read_attribute(field).to_s
       end
     end
 
