@@ -53,6 +53,17 @@ module BestInPlace
       options[:data]['bip-confirm'] = opts[:confirm].presence
       options[:data]['bip-value'] = html_escape(value).presence
 
+      if type == :checkbox
+        options[:data]['bip-true-class'] = opts[:true_class]
+        options[:data]['bip-false-class'] = opts[:false_class]
+        if value
+          options[:class] = options[:class] << opts[:true_class]
+        else
+          options[:class] = options[:class] << opts[:false_class]
+        end
+      end
+
+
       if opts[:raw]
         options[:data]['bip-raw'] = 'true'
       end
