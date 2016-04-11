@@ -370,6 +370,19 @@ describe BestInPlace::Helper, type: :helper do
         end
       end
 
+      describe "with custom css classes" do
+        before do
+          nk = Nokogiri::HTML.parse(helper.best_in_place @user, :receive_email, as: :checkbox, :true_class=>"csstrue", :false_class=>"cssfalse")
+          @span = nk.css("span")
+        end
+        it "should render with the false class" do
+          expect(@span.attribute('data-bip-false-class').value).to eq true
+        end
+        it "should render with the true class" do
+          allow_any_instance_of(User).to receive(:receive_email).and_return true
+          expect(@span.attribute('data-bip-true-class').value).to eq true
+        end
+      end
     end
 
     context 'with a select attribute' do
