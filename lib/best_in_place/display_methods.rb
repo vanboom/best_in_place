@@ -6,16 +6,16 @@ module BestInPlace
       def render_json(object)
         case opts[:type]
           when :model
-            { display_as: object.send(opts[:method]) }.to_json
+            { raw: object.send(opts[:attr]), display_as: object.send(opts[:method]) }.to_json
           when :helper
             value = if opts[:helper_options]
                       BestInPlace::ViewHelpers.send(opts[:method], object.send(opts[:attr]), opts[:helper_options])
                     else
                       BestInPlace::ViewHelpers.send(opts[:method], object.send(opts[:attr]))
                     end
-            { display_as: value }.to_json
+            { raw: object.send(opts[:attr]), display_as: value }.to_json
           when :proc
-            { display_as: opts[:proc].call(object.send(opts[:attr])) }.to_json
+            { raw: object.send(opts[:attr]), display_as: opts[:proc].call(object.send(opts[:attr])) }.to_json
           else
             '{}'
         end
