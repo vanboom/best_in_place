@@ -4,21 +4,23 @@ module BestInPlace
 
     def bip_area(model, attr, new_value)
       id = BestInPlace::Utils.build_best_in_place_id model, attr
+      id2 = id.gsub("\.",'\\\\\.')
       find_by_id("#{id}").trigger('click')
       execute_script <<-JS
-        $("##{id} form textarea").val('#{escape_javascript new_value.to_s}');
-        $("##{id} form textarea").blur();
-        $("##{id} form").submit();
+        $("##{id2} form textarea").val('#{escape_javascript new_value.to_s}');
+        $("##{id2} form textarea").blur();
+        $("##{id2} form").submit();
       JS
       wait_for_ajax
     end
 
     def bip_text(model, attr, new_value)
       id = BestInPlace::Utils.build_best_in_place_id model, attr
+      id2 = id.gsub("\.",'\\\\\.')
       find_by_id("#{id}").click
       execute_script <<-JS
-        $("##{id} input[name='#{attr}']").val('#{escape_javascript new_value.to_s}');
-        $("##{id} form").submit();
+        $("##{id2} input[name='#{attr}']").val('#{escape_javascript new_value.to_s}');
+        $("##{id2} form").submit();
       JS
       wait_for_ajax
     end
