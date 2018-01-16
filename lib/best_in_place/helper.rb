@@ -10,7 +10,6 @@ module BestInPlace
       options[:data] = HashWithIndifferentAccess.new(opts[:data])
       options[:data]['bip-type'] = type
       options[:data]['bip-attribute'] = field
-      options[:data]['bip-ajax-data-type'] = opts[:ajax_data_type]
       real_object = best_in_place_real_object_for object
 
       display_value = best_in_place_build_value_for(real_object, field, opts)
@@ -33,6 +32,7 @@ module BestInPlace
       pass_through_html_options(opts, options)
 
       options[:data]['bip-activator'] = opts[:activator].presence
+      options[:data]['bip-ajax-data-type'] = opts[:ajax_data_type].presence
 
       options[:data]['bip-html-attrs'] = opts[:html_attrs].to_json unless opts[:html_attrs].blank?
       options[:data]['bip-inner-class'] = opts[:inner_class].presence
@@ -93,7 +93,7 @@ module BestInPlace
                     :activator, :cancel_button, :cancel_button_class, :html_attrs, :inner_class, :nil,
                     :object_name, :ok_button, :ok_button_class, :display_as, :display_with, :path, :value,
                     :use_confirm, :confirm, :sanitize, :raw, :helper_options, :url, :place_holder, :class,
-                    :as, :param, :container, :true_class, :false_class]
+                    :as, :param, :container, :true_class, :false_class, :ajax_data_type]
       uknown_keys = opts.keys - known_keys
       uknown_keys.each { |key| options[key] = opts[key] }
     end
