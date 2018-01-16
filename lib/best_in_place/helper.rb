@@ -10,7 +10,7 @@ module BestInPlace
       options[:data] = HashWithIndifferentAccess.new(opts[:data])
       options[:data]['bip-type'] = type
       options[:data]['bip-attribute'] = field
-
+      options[:data]['bip-ajax-data-type'] = opts[:ajax_data_type]
       real_object = best_in_place_real_object_for object
 
       display_value = best_in_place_build_value_for(real_object, field, opts)

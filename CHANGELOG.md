@@ -1,4 +1,8 @@
 #Changelog
+
+- 3.1.7 :
+  - Vanboom: added ajax_data_type option to allow JS (script) ajax instead of JSON.
+
 - unreleased
   - add option[:skip_blur] to play nice with wysiwhtml5
 
