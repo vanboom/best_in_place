@@ -15,6 +15,9 @@ module BestInPlace
       display_value = best_in_place_build_value_for(real_object, field, opts)
 
       value = real_object.send(field)
+      if value.is_a? Date or value.is_a? Time and type == :date
+        value = value.strftime("%Y-%m-%d")
+      end
 
       if opts[:collection] or type == :checkbox
         collection = opts[:collection]
@@ -122,9 +125,6 @@ module BestInPlace
           end
         end
 
-      # format the default value per HTML5 date field
-      elsif object.is_a? Date or object.is_a? Time
-        object.send(field).strftime("%Y-%m-%d")
       else
         object.send(field).to_s
       end
