@@ -122,6 +122,9 @@ module BestInPlace
           end
         end
 
+      # format the default value per HTML5 date field
+      elsif object.is_a? Date or object.is_a? Time
+        object.send(field).strftime("%Y-%m-%d")
       else
         object.send(field).to_s
       end
