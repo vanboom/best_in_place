@@ -1,5 +1,9 @@
 #Changelog
 
+- 3.2.0 (Vanboom) :
+  - Added the .form_in_place class to a stylesheet and removed the hard coded display style - requires including "best_in_place.css" in your stylesheet.
+  - Fixed issues with cancel button not working for number and date fields.
+
 - 3.1.7 :
   - Vanboom: added ajax_data_type option to allow JS (script) ajax instead of JSON.
 

@@ -1,0 +1,6 @@
+.form_in_place
+{
+  display: inline-flex;
+  flex-direction: row;
+  overflow: visible;
+}
