@@ -1,5 +1,6 @@
 #Changelog
-
+- 3.2.1 (Vanboom) :
+  - Added the `textarea` class to the form in place element to allow style changes based on text area inputs vs. inline input fields.
 - 3.2.0 (Vanboom) :
   - Added the .form_in_place class to a stylesheet and removed the hard coded display style - requires including "best_in_place.css" in your stylesheet.
   - Fixed issues with cancel button not working for number and date fields.
