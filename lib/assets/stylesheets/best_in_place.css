@@ -3,16 +3,18 @@
   display: inline-flex;
   flex-direction: row;
   overflow: visible;
-  &.textarea
-  {
-    flex-direction: column;
-    display: flex;
-  }
-  textarea
-  {
-    width: 100%;
-    margin-bottom: 0;
-  }
+}
+
+.form_in_place.textarea
+{
+  flex-direction: column;
+  display: flex;
+}
+
+.form_in_place textarea
+{
+  width: 100%;
+  margin-bottom: 0;
 }
 
 .bip-buttons
